@@ -36,12 +36,12 @@
                 <div class="form-group">
                   <input asp-for="Fullname"
                       class="form-control form-control-lg"
-                      placeholder="Fullname">
+                      placeholder="Tam adınız">
                       <span asp-validation-for="Fullname" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                  <input asp-for="UserName"  class="form-control form-control-lg"  placeholder="Username">
+                  <input asp-for="UserName"  class="form-control form-control-lg"  placeholder="İstifadəçi adı">
                 <span asp-validation-for="UserName" class="text-danger"></span>
               </div>
 
@@ -51,22 +51,22 @@
               </div>
 
                 <div class="form-group">
-                  <input asp-for="Password"  class="form-control form-control-lg"  placeholder="Password">
+                  <input asp-for="Password"  class="form-control form-control-lg"  placeholder="Şifrə">
                 <span asp-validation-for="Password" class="text-danger"></span>
               </div>
 
                 <div class="form-group">
-                  <input asp-for="CheckPassword" class="form-control form-control-lg"  placeholder="CheckPassword">
+                  <input asp-for="CheckPassword" class="form-control form-control-lg"  placeholder="Şifrəni yenidən daxil edin">
                  <span asp-validation-for="CheckPassword" class="text-danger"></span>
               </div>
 
 
 
                 <div class="mt-3">
-                  <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="register" />
+                  <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="qeydiyyat" />
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a asp-controller="account" asp-action="login" class="text-primary">Login</a>
+                  Artıq bir hesabınız var? <a asp-controller="account" asp-action="login" class="text-primary">Daxil olun</a>
                 </div>
               </form>
             </div>
