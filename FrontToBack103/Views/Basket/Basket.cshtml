@@ -1,0 +1,82 @@
+﻿@model IEnumerable<BasketProduct>
+@{
+    ViewData["Title"] = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+
+
+<div class="container">
+       @if (TempData["Fail"]!=null)
+    {
+         <div class="alert alert-danger" id="failAlert" role="alert">
+            @TempData["Fail"]
+       </div>
+    }
+
+    @if (Model.Count()>0)
+    {
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td><img width="200px" src="~/img/@item.ImageUrl" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <a asp-controller="basket" asp-action="minus" asp-route-id="@item.Id">-</a>
+                                @item.Count
+                                  <a asp-controller="basket" asp-action="plus" asp-route-id="@item.Id">+</a>
+                                
+                            </td>
+                            <td>
+                                <a style="cursor:pointer"
+                           asp-controller="basket"
+                           asp-action="removeitem"
+                           asp-route-id="@item.Id">x</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="alert alert-primary ">
+                go to <a asp-controller="home" asp-action="index">home page</a>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts{
+    <script>
+
+
+        let alertDiv=document.getElementById("failAlert");
+setTimeout(function() {
+    alertDiv.remove()
+},3000)
+
+    </script>
+}

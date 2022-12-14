@@ -1,0 +1,255 @@
+﻿ @model Bio
+<header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav
+                        class="navbar navbar-expand-lg d-flex d-lg-block justify-content-between d-xl-flex navbar-light py-3 py-lg-0">
+                        <a class="navbar-brand" asp-controller="home" asp-action="index">
+                            <h1 style="color:mediumvioletred";>ElAy</h1>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation" id="mobile-navbar-show">
+                            <span class="navbar-toggler-icon" style="font-size: 12px;"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse d-none d-lg-block" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Əsas</a>
+                                    <ul class="list-unstyled py-3">
+                                        <li class=""><a class="px-1" href="">Əsas 1</a></li>
+                                        <li class=""><a class="px-1" href="">Əsas 2</a></li>
+                                        <li class=""><a class="px-1" href="">Əsas 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Səhifələr</a>
+                                    <ul class="list-unstyled py-3">
+                                        <li class=""><a class="px-1" href="">Səhifə 1</a></li>
+                                        <li class=""><a class="px-1" href="">Səhifə 2</a></li>
+                                        <li class=""><a class="px-1" href="">Səhifə 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item shop-li">
+                                    <a class="nav-link" href="#">Satış</a>
+                                    <div class="container">
+                                        <div class="row shop py-5">
+                                            <div class="col-lg-3">
+                                                <div class="item px-4">
+                                                    <h5>Məhsulun növləri</h5>
+                                                    <ul class="list-unstyled py-3">
+                                                        <li class=""><a class="px-3" asp-controller="product" asp-actiont = "index " >Məhsul növü 1</a></li>
+                                                        <li class=""><a class="px-3" href="">Məhsul növü 2</a></li>
+                                                        <li class=""><a class="px-3" href="">Məhsul növü 3</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="item px-4">
+                                                    <h5>Satış səhifələri</h5>
+                                                    <ul class="list-unstyled py-3">
+                                                        <li class=""><a class="px-3" href="">Satış 1</a></li>
+                                                        <li class=""><a class="px-3" href="">Satış 2</a></li>
+                                                        <li class=""><a class="px-3" href="">Satış 3</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="item px-4">
+                                                    <h5>Satış Növləri</h5>
+                                                    <ul class="list-unstyled py-3">
+                                                        <li class=""><a class="px-3" href="">Növ 1</a></li>
+                                                        <li class=""><a class="px-3" href="">Növ 2</a></li>
+                                                        <li class=""><a class="px-3" href="">Növ 3</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="item px-4">
+                                                    <h5>Satış sxemləri</h5>
+                                                    <ul class="list-unstyled py-3">
+                                                        <li class=""><a class="px-3" href="">Sxem 1</a></li>
+                                                        <li class=""><a class="px-3" href="">Sxem 2</a></li>
+                                                        <li class=""><a class="px-3" href="">Sxem 3</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Ümumi</a>
+                                    <ul class="list-unstyled py-3">
+                                        <li class=""><a class="px-1" href="">Portfel 1</a></li>
+                                        <li class=""><a class="px-1" href="">Portfel 2</a></li>
+                                        <li class="">
+                                            <a class="px-1 mr-5" href="">Portfel 3</a>
+                                            <i class="fas fa-chevron-right fa-sm"></i>
+                                            <ul class="list-unstyled py-3">
+                                                <li class=""><a class="px-3" href="">Satış sxemi 1</a></li>
+                                                <li class=""><a class="px-3" href="">Satış sxemi 2</a></li>
+                                                <li class=""><a class="px-3" href="">Satış sxemi 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a asp-controller="account" asp-action="logout" class="nav-link" >Çıxış</a>
+                                </li>
+                                <li class="nav-item">
+                                 @ViewBag.Fullname
+                            </li>
+                            }
+                           
+                            else
+                            {
+                                 <li class="nav-item">
+                                    <a asp-controller="account" asp-action="login" asp-route-ReturnUrl="@Context.Request.Path.Value" class="nav-link" >Qeydiyyat</a>
+                                </li>
+                            }
+
+                            
+                            <li class="nav-item my-auto search">
+                                    <i class="fas fa-search" id="search"></i>
+                                    <ul class="list-unstyled py-3">
+                                        <li class="d-flex px-3">
+                                            <input id="input-search" type="text" placeholder="Axtar">
+                                            <i class="fas fa-search my-auto" id="search"></i>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="nav-item my-auto shop-cart">
+                                   <a asp-controller="basket" asp-action="basket"> <i class="fas fa-shopping-bag"></i></a>
+                                    <sup class="rounded-circle">@ViewBag.BasketLength</sup>
+                                    <span>Səbət ($0)</span>
+                                    <ul class="list-unstyled py-3">
+                                        <li class="">Səbətinizdə məhsul yoxdur</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                </div>
+            </div>
+            <div class="mobile-navbar position-absolute shadow-lg h-100 p-5">
+                <i class="fas fa-times fa-lg" id="mobile-navbar-close"></i>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home <i class="fas fa-caret-right fa-sm"></i></a></li>
+                    <ul class="list-unstyled">
+                        <li class=""><a class="px-1" href="">Əsas 1</a></li>
+                        <li class=""><a class="px-1" href="">Əsas 2</a></li>
+                        <li class=""><a class="px-1" href="">Əsas3</a></li>
+                    </ul>
+                    <li><a href="#">Pages <i class="fas fa-caret-right fa-sm"></i></a></li>
+                    <ul class="list-unstyled">
+                        <li class=""><a class="px-1" href="">Səhifə 1</a></li>
+                        <li class=""><a class="px-1" href="">Səhifə 2</a></li>
+                        <li class=""><a class="px-1" href="">Səhifə 3</a></li>
+                    </ul>
+                    <li><a href="#">Shop <i class="fas fa-caret-right fa-sm"></i></a></a></li>
+                    <ul class="list-unstyled py-3">
+                        <li class=""><a class="px-3" href="#">PRODUCT TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP PAGES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                    </ul>
+                    <li><a href="#">Portfolio <i class="fas fa-caret-right fa-sm"></i></a></a></li>
+                    <ul class="list-unstyled py-3">
+                        <li class=""><a class="px-3" href="#">PRODUCT TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP PAGES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                    </ul>
+                    <li><a href="#">Blog <i class="fas fa-caret-right fa-sm"></i></a></a></li>
+                    <ul class="list-unstyled py-3">
+                        <li class=""><a class="px-3" href="#">PRODUCT TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP PAGES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                    </ul>
+                    <li><a href="#">Elements <i class="fas fa-caret-right fa-sm"></i></a></a></li>
+                    <ul class="list-unstyled py-3">
+                        <li class=""><a class="px-3" href="#">PRODUCT TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP PAGES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                        <li class=""><a class="px-3" href="#">SHOP TYPES <i class="fas fa-caret-right fa-sm"></i></a>
+                        </li>
+                        <ul class="list-unstyled py-3">
+                            <li class=""><a class="px-3" href="">Product Types 1</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 2</a></li>
+                            <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                        </ul>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+
+    </header>

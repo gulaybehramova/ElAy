@@ -1,0 +1,332 @@
+﻿  @model HomeVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- MAIN START -->
+
+<main>
+
+    <!-- SLIDER START -->
+    @if (TempData["Fail"]!=null)
+    {
+         <div class="alert alert-danger" id="failAlert" role="alert">
+            @TempData["Fail"]
+       </div>
+    }
+
+       
+
+        <section id="slider">
+            <div class="owl-carousel slider">
+                @foreach (var item in Model.sliders)
+                {
+                    <div> <img src="~/img/@item.ImageUrl" alt=""> </div>
+                }
+             
+            </div>
+            <div class="container context pl-lg-5 ml-lg-3">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="text">
+                            <h1>@Html.Raw(Model.pageIntro.Title)</h1>
+                           
+                            <p class="text-black-50 d-none d-sm-block">@Model.pageIntro.Desc </p>
+                        </div>
+                        <div class="img">
+                            <img src="~/img/@Model.pageIntro.ImageUrl" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDER END -->
+
+        <!-- PRODUCTS START -->
+
+        <section id="products">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-12 d-flex justify-content-between">
+                        <ul class="category-mobile d-md-none list-unstyled">
+                            <li>
+                                <a href="" class="categories mr-2">Categories</a>
+                                <i class="fas fa-caret-down"></i>
+                                <ul class="category list-unstyled" style="display: none;">
+                                    <li><a href="" data-id="all">All</a></li>
+                                    @foreach (var item in Model.categories)
+                                   {
+                                       <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
+                                   }                                    
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="category d-none d-md-flex list-unstyled">
+                            <li><a href="" data-id="all">All</a></li>
+                           @foreach (var item in Model.categories)
+                                   {
+                                       <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
+                                   }  
+                        </ul>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="" class="mr-2">Filter</a>
+                                <i class="fas fa-caret-down"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                 
+                   @await Component.InvokeAsync("Products")
+                
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS END -->
+
+        <!-- ABOUT START -->
+
+        <section id="about">
+            <div class="container py-5">
+                <div class="row py-5">
+                    <div class="col-lg-6">
+                        <div class="img">
+                            <img src="~/img/h3-video-img.jpg" class="img-fluid" alt="">
+                            <div
+                                class="player position-absolute rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="fas fa-play fa-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-text mt-5 mt-lg-0 px-lg-5">
+                            <h1>Bütün qadınlar <span>Çiçəkdir!</span> Onları sevindirin.</h1>
+                            <p class="py-3">Hər bir qadına gözəl bir gül yaraşar, sevdiklərinizə gül
+                            alın və onların gülümsəməsinə səbəb olun!</p>
+                            <ul class="list-unstyled">
+                                <li class="mt-3"><img src="~/img/h1-custom-icon.png" class="mr-2" alt="">Dəyərli hiss
+                                etdirməyin ən yaxşı yolu</li class="mt-3">
+                                <li class="mt-3"><img src="~/img/h1-custom-icon.png" class="mr-2" alt="">Sevginizin
+                                ən gözəl nişanəsi güllərdir</li>
+                                <li class="mt-3"><img src="~/img/h1-custom-icon.png" class="mr-2" alt="">Güllər
+                                dünyamızı gözəlləşdirir</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT END -->
+
+        <!-- EXPERTS START -->
+
+        <section id="experts">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="section-title">
+                            <h1>
+                                Çiçək Mütəxəssisləri
+                            </h1>
+                            <p class="text-black-50">
+                                Yaradıcılıq, enerji, ünsiyyət, xoşbəxtlik və sevginin mükəmməl qarışığı.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-5">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="item text-center">
+                            <div class="img">
+                                <img src="~/img/ELNURƏ.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <div class="text mt-3">
+                                <h6>Nəcəfova Elnurə</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="item text-center">
+                            <div class="img">
+                                <img src="~/img/GÜLAY.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <div class="text mt-3">
+                                <h6>Bəhramova Gülay</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERTS END -->
+
+        <!-- SUBSCRIBE START -->
+
+        <section id="subscribe">
+            <div class="container py-5">
+                <div class="row py-5">
+                    <div class="col-12">
+                        <div class="content text-center py-5">
+                            <h3>Çiçəkli Dünyamıza Sizi Də Dəvət Edirik!</h3>
+                            <div class="form-group d-flex justify-content-center flex-wrap mt-5">
+                                <input type="email" placeholder="Email Ünvanı" class="form-control-lg rounded-0">
+                                <button class="btn btn-danger btn-lg rounded-0 px-5 mt-3 mt-sm-0">ABUNƏ OLUN</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUBSCRIBE END -->
+
+        <!-- BLOG START -->
+
+        <section id="blog">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="section-title">
+                            <h1>SİZİN ÜÇÜN ÖZƏL</h1>
+                            <p class="text-black-50">Məqsədimiz Hər Bir Xanımın Üzündə Gülüş Yaratmaqdır)))</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-5">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="item">
+                            <div class="img position-relative">
+                                <img src="~/img/blog-feature-img-1.jpg" class="img-fluid" alt="">
+                                <div class="date rounded bg-light position-absolute py-1 px-2">
+                                    <span>29.12.2019</span>
+                                </div>
+                            </div>
+                            <div class="text mt-3 text-center px-5">
+                                <h5>Gül Gücü</h5>
+                                <p class="text-black-50">Gözəl bir gülə kim yox deyə bilərki...))</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="item">
+                            <div class="img position-relative">
+                                <img src="~/img/blog-feature-img-3.jpg" class="img-fluid" alt="">
+                                <div class="date rounded bg-light position-absolute py-1 px-2">
+                                    <span>29.12.2019</span>
+                                </div>
+                            </div>
+                            <div class="text mt-3 text-center px-5">
+                                <h5>Özəl hədiyyə</h5>
+                                <p class="text-black-50">Güldən daha özəl hiss etdirəcək hədiyyə yoxdur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="item">
+                            <div class="img position-relative">
+                                <img src="~/img/blog-feature-img-4.jpg" class="img-fluid" alt="">
+                                <div class="date rounded bg-light position-absolute py-1 px-2">
+                                    <span>29.12.2019</span>
+                                </div>
+                            </div>
+                            <div class="text mt-3 text-center px-5">
+                                <h5>Gözəllik</h5>
+                                <p class="text-black-50">Gözəllik düşkünü qadınlara zərif və gözəl gül yaraşar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG END -->
+
+        <!-- SAY START -->
+
+        <section id="say">
+            <div class="container">
+                <div class="row py-5 justify-content-center">
+                    <div class="col-md-8 col-xl-6">
+                        <div class="owl-carousel say">
+                            <div>
+                                <div class="item text-center">
+                                    <div class="img d-flex justify-content-center">
+                                        <img src="~/img/GÜLAY.jpg" alt="">
+                                    </div>
+                                    <div class="text text-muted pt-3 pb-5">
+                                        <i>Bizim gözəl güllərimizdən hələdə almamısız?
+                                        Onda çox şey qaçırmısız deməkdir, amma heç bir zaman gec deyl. Buyurun 
+                                        sifariş edin və həyatınızı rəngləndirək</i>
+                                    </div>
+                                    <div class="author">
+                                        <h6>Gülay</h6>
+                                        <p class="text-black-50">Çiçəkçi</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="item text-center">
+                                    <div class="img d-flex justify-content-center">
+                                        <img src="~/img/ELNURƏ.jpg" alt="">
+                                    </div>
+                                    <div class="text text-muted pt-3 pb-5">
+                                        <i>Evinizi çiçəklərlə doldurun və günə pozitiv başlayın!</i>
+                                    </div>
+                                    <div class="author">
+                                        <h6>Elnurə</h6>
+                                        <p class="text-black-50">Çiçəkçi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAY END -->
+
+        <!-- INSTAGRAM START -->
+
+        <section id="instagram">
+            <div class="owl-carousel instagram">
+                <div><img src="~/img/instagram1.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram2.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram3.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram4.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram5.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram6.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram7.jpg" class="img-fluid" alt=""></div>
+                <div><img src="~/img/instagram8.jpg" class="img-fluid" alt=""></div>
+            </div>
+            <div class="hastag bg-light text-muted py-2 px-3">
+                #ElAy
+            </div>
+        </section>
+
+        <!-- INSTAGRAM END -->
+
+    </main>
+
+    <!-- MAIN END -->
+
+@section Scripts{
+    <script>
+
+
+        let alertDiv=document.getElementById("failAlert");
+setTimeout(function() {
+    alertDiv.remove()
+},3000)
+
+    </script>
+}

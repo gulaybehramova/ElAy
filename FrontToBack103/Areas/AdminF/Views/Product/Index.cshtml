@@ -1,0 +1,80 @@
+﻿@model Pagination<ProductVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminF/Views/Shared/_AdminLayout.cshtml";
+    int seh = 0;
+    int say = 0;
+    int addNumber = ViewBag.Number;
+
+}
+
+    
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Product Table</h4>
+                <a claclass="btn btn-success " asp-controller="Product" asp-action="Create">Create</i></a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Count</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>PCount</th>
+                                <th>CategoryName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                say++;
+                                addNumber++;
+                                if (say==1)
+                                {
+                                    seh = item.Count;
+                                }
+                                int count = (Model.CurrentPage-1)*seh+say;
+                                
+                                <tr>
+                                    <td>@addNumber</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <img width="200px" src="~/img/@item.ImageUrl" />
+                                    </td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Count</td>
+                                    <td>@item.CategoryName</td>
+
+                                    <td>
+                                        <a class="btn btn-danger" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete"></i></a>
+                                        <a class="btn btn-primary" asp-controller="product" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i></a>
+                                        <a class="btn btn-info " asp-controller="product" asp-action="Detail" asp-route-id="@item.Id"><i class="mdi mdi-account-card-details"></i></a>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row justify-content-center">
+    <ul class="pagination pagination-lg">
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            
+            <li class="page-item @(Model.CurrentPage==i? "disabled":"")">
+                <a asp-area="adminf" asp-controller="product" asp-action="index" asp-route-pageSize="@i" class="page-link">@i</a>
+            </li>
+        }
+    </ul>
+</div>
